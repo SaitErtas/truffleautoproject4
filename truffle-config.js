@@ -58,18 +58,25 @@ module.exports = {
    */
 
   networks: {
-
     development: {
       host: '127.0.0.1',
       port: 7545,
       network_id: '5777',
     },
+    live: {
+      host: '127.0.0.1',
+      port: 7545,
+      network_id: '*',
+    },
     dashboard: {
       host: '127.0.0.1',
       port: 24012,
+      network_id: '*',
     },
-    dashboard: {
-      port: 24012,
+    deploy: {
+      host: '127.0.0.1',
+      port: 7545,
+      network_id: '*',
     },
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
@@ -117,19 +124,19 @@ module.exports = {
   },
 
   // Configure your compilers
-  //compilers: {
-    //solc: {
-    //  version: "0.8.17" // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
-    //}
-  //}
+  compilers: {
+    solc: {
+     version: "0.8.18" ,// Fetch exact version from solc-bin (default: truffle's version)
+      //docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
+      settings: {          // See the solidity docs for advice about optimization and evmVersion
+       optimizer: {
+         enabled: false,
+         runs: 200
+       },
+       evmVersion: "byzantium"
+      }
+    }
+  }
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
   // false to enabled: true. The default storage location can also be
