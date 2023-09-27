@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.18;
+pragma solidity ^0.8.18;
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract BnbAndyFinance {
     using SafeMath for uint256;
@@ -118,12 +119,14 @@ contract BnbAndyFinance {
             } else revert("Not started yet");
         }
 
+        require(msg.value >= INVEST_MIN_AMOUNT);
+
         uint256 minDeposit = (last_deposit[msg.sender].div(10)) +
             last_deposit[msg.sender];
-        require(msg.value >= INVEST_MIN_AMOUNT);
+
         require(
             msg.value > minDeposit,
-            "Insufficient deposit amount. Must be bigger than you entry"
+            string.concat( "Insufficient deposit amount. Must be bigger than ",Strings.toString(minDeposit)) 
         );
         require(plan < 1, "Invalid plan");
 
